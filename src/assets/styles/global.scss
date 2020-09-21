@@ -10,12 +10,12 @@ body {
     background-color: pink;
   }
   .snake-body {
-    position: relative;
-    top: 0;
-    left: 0;
     display: inline-block;
   }
   .snake-body-item {
+    position: absolute;
+    top: 0;
+    left: 0;
     &:last-child {
       border-left: 1px solid #fff;
     }
@@ -23,5 +23,8 @@ body {
     height: 20px;
     background-color: blue;
     display: inline-block;
+    &.head {
+      background-color: red;
+    }
   }
 }
