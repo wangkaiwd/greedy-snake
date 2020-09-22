@@ -1,4 +1,5 @@
-import { addClass, createEle } from '@/shared/dom';
+import { createEleAndAddClass } from '@/shared/dom';
+import Food from '@/food';
 
 const step = 20;
 const interval = 400;
@@ -17,13 +18,16 @@ function Snake (container) {
   this.snakeBody = null;
   this.direction = null;
   this.initSnake();
+  this.createFood();
   this.bindEvent();
 }
 
 Snake.prototype.bindEvent = function () {
   window.addEventListener('keydown', this.run.bind(this));
 };
-
+Snake.prototype.createFood = function () {
+  new Food(this.container);
+};
 Snake.prototype.initSnake = function () {
   const snakeBody = createEleAndAddClass({ tag: 'div', className: 'snake-body' });
   const len = 4;
@@ -77,14 +81,6 @@ function isForbiddenChangeDirection (prevDirection, currentDirection) {
     (prevDirection === 'left' && currentDirection === 'right')
     ||
     (prevDirection === 'right' && currentDirection === 'left');
-}
-
-function createEleAndAddClass ({ tag, className }) {
-  const ele = createEle(tag);
-  if (className) {
-    addClass(ele, className);
-  }
-  return ele;
 }
 
 export default Snake;

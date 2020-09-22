@@ -8,3 +8,11 @@ export function addClass (element, className) {
     element.classList.add(name);
   });
 }
+
+export function createEleAndAddClass ({ tag, className }) {
+  const ele = createEle(tag);
+  if (className) {
+    addClass(ele, className);
+  }
+  return ele;
+}
