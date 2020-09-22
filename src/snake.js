@@ -1,11 +1,13 @@
 import { addClass, createEle } from '@/shared/dom';
 
+const step = 20;
+const interval = 400;
 const getMoveMap = (child) => {
   return {
-    37: { direction: 'left', ...child && { value: child.offsetLeft - 20, key: 'left' } },
-    38: { direction: 'up', ...child && { value: child.offsetTop - 20, key: 'top' } },
-    39: { direction: 'right', ...child && { value: child.offsetLeft + 20, key: 'left' } },
-    40: { direction: 'down', ...child && { value: child.offsetTop + 20, key: 'top' } }
+    37: { direction: 'left', ...child && { value: child.offsetLeft - step, key: 'left' } },
+    38: { direction: 'up', ...child && { value: child.offsetTop - step, key: 'top' } },
+    39: { direction: 'right', ...child && { value: child.offsetLeft + step, key: 'left' } },
+    40: { direction: 'down', ...child && { value: child.offsetTop + step, key: 'top' } }
   };
 };
 
@@ -47,7 +49,7 @@ Snake.prototype.run = function (e) {
   clearInterval(this.timer);
   this.timer = setInterval(() => {
     this.move(e.keyCode);
-  }, 400);
+  }, interval);
 };
 
 Snake.prototype.move = function (keyCode) {
